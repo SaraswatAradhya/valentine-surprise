@@ -8,46 +8,42 @@
 body{
   margin:0;
   font-family:'Segoe UI', cursive;
-  background:linear-gradient(135deg,#ffd6e8,#fff0f6);
+  background:linear-gradient(135deg,#ffd6e8,#fff1f7);
   overflow:hidden;
 }
 
+/* BACKGROUND STICKERS */
+.bg-stickers{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+.sticker{
+  position:absolute;
+  width:180px;
+  opacity:0.85;
+}
+.s1{top:5%;left:5%;}
+.s2{bottom:8%;right:6%;}
+.s3{top:55%;left:70%;}
+
+/* SCREENS */
 .screen{
   display:none;
   height:100vh;
   width:100vw;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
+  flex-direction:column;
   text-align:center;
   padding:20px;
+  position:relative;
+  z-index:2;
 }
-
 .active{display:flex;}
 
-h1{color:#ff2f7d;}
-p{font-size:18px; color:#444;}
-
-button{
-  margin:8px;
-  padding:12px 24px;
-  border:none;
-  border-radius:25px;
-  font-size:16px;
-  cursor:pointer;
-  background:#ff5fa2;
-  color:white;
-}
-
-button:hover{background:#ff2f7d;}
-
-.cute-gif{
-  width:170px;
-  border-radius:20px;
-  margin:15px 0;
-}
-
-/* Loader */
+/* LOADER */
 #loader{
   font-size:28px;
   color:#ff4f9a;
@@ -58,98 +54,141 @@ button:hover{background:#ff2f7d;}
   50%{opacity:1}
   100%{opacity:.4}
 }
+
+/* INTRO */
+h1{color:#ff2f7d;}
+p{max-width:500px;font-size:18px;}
+.cute-gif{
+  width:180px;
+  border-radius:20px;
+  margin:15px;
+}
+button{
+  margin:8px;
+  padding:12px 24px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  background:#ff4f9a;
+  color:white;
+}
+button:hover{background:#ff2f7d;}
 </style>
 </head>
 
 <body>
 
+<!-- BACKGROUND GIFS -->
+<div class="bg-stickers">
+  <img src="https://media.tenor.com/Z8ezUHZzcLoAAAAi/heart-love.gif" class="sticker s1">
+  <img src="https://media.tenor.com/0AVbKGY_MxMAAAAi/love-heart.gif" class="sticker s2">
+  <img src="https://media.tenor.com/1rXK3wP2Y5QAAAAi/cute-love.gif" class="sticker s3">
+</div>
+
 <!-- LOADER -->
 <div id="loader" class="screen active">
-  <div>something special is loading… 💝</div>
+  something special is loading… 💝
 </div>
 
 <!-- INTRO -->
 <div id="intro" class="screen">
   <h1>Hi my loveeee 💕<br>Happiest Valentinessss 💖</h1>
-
   <img src="https://media.tenor.com/9w2c9FzP0sUAAAAi/love-bear.gif" class="cute-gif">
-
   <p>
     This Valentine, before your gift,<br>
     let’s start your surprise with a lil quizzzz 😌💗
   </p>
-
   <button onclick="goTo('q1')">Let’s begin the surprise 💘</button>
 </div>
 
 <!-- QUESTION 1 -->
 <div id="q1" class="screen">
-<h1>Question 1 💕</h1>
-<p>Where did we first interact with each other?</p>
-<button onclick="wrong()">WhatsApp</button>
-<button onclick="correct('Instagram 😌💖')">Instagram</button>
-<button onclick="wrong()">Telegram</button>
-<button onclick="wrong()">Snapchat</button>
+  <h1>Where did we first interact? 💭</h1>
+  <button onclick="wrong()">WhatsApp</button>
+  <button onclick="correct('Instagram 😌💖','q2')">Instagram</button>
+  <button onclick="wrong()">Telegram</button>
+  <button onclick="wrong()">Snapchat</button>
 </div>
 
 <!-- QUESTION 2 -->
 <div id="q2" class="screen">
-<h1>Question 2 😤</h1>
-<p>The date you confessed your feelings?</p>
-<button onclick="wrong('I am killing you after this 😤')">19 Aug 2024</button>
-<button onclick="wrong('I am killing you after this 😤')">21 Aug 2024</button>
-<button onclick="correct('22 Aug 2024 💘')">22 Aug 2024</button>
-<button onclick="wrong('I am killing you after this 😤')">23 Aug 2024</button>
+  <h1>The date you confessed your feelings? 🥹</h1>
+  <button onclick="wrong('I am killing you after this 😤')">19 Aug 2024</button>
+  <button onclick="wrong('I am killing you after this 😤')">21 Aug 2024</button>
+  <button onclick="correct('22 Aug 2024 💘','q3')">22 Aug 2024</button>
+  <button onclick="wrong('I am killing you after this 😤')">23 Aug 2024</button>
 </div>
 
 <!-- QUESTION 3 -->
 <div id="q3" class="screen">
-<h1>Question 3 🥹</h1>
-<p>One gift that touched your heart the most?</p>
-<button onclick="correct('Awww 🥹💗')">Muffler</button>
-<button onclick="wrong()">Handmade cards</button>
-<button onclick="correct('That means everything 🥹💖')">Imaginary hugging painting</button>
-<button onclick="wrong()">Bracelet</button>
+  <h1>Gift that touched your heart most? 🎁</h1>
+  <button onclick="correct('Awww 🥹💗','q4')">Muffler</button>
+  <button onclick="wrong()">Handmade cards</button>
+  <button onclick="correct('That means everything 🥹💖','q4')">Imaginary hugging painting</button>
+  <button onclick="wrong()">Bracelet</button>
 </div>
 
 <!-- QUESTION 4 -->
 <div id="q4" class="screen">
-<h1>Question 4 ✨</h1>
-<p>One place where I want us to go first?</p>
-<button onclick="correct('Yes yes yes 😌💗')">Banaras</button>
-<button onclick="wrong()">Kashmir</button>
-<button onclick="wrong()">Lucknow</button>
-<button onclick="wrong()">Uttarakhand</button>
+  <h1>First place I want us to go? ✈️</h1>
+  <button onclick="correct('Banaras it is 😌💗','q5')">Banaras</button>
+  <button onclick="wrong()">Kashmir</button>
+  <button onclick="wrong()">Lucknow</button>
+  <button onclick="wrong()">Uttarakhand</button>
 </div>
 
 <!-- QUESTION 5 -->
 <div id="q5" class="screen">
-<h1>Question 5 💕</h1>
-<p>One place where YOU want to take me first?</p>
-<button onclick="wrong()">Manali</button>
-<button onclick="wrong()">Shimla</button>
-<button onclick="correct('Okay fine 😌💖')">Kashmir</button>
-<button onclick="wrong()">Darjeeling</button>
+  <h1>Place YOU want to take me first? 😌</h1>
+  <button onclick="wrong()">Manali</button>
+  <button onclick="wrong()">Shimla</button>
+  <button onclick="correct('Okay okay 😌💖','q6')">Kashmir</button>
+  <button onclick="wrong()">Darjeeling</button>
 </div>
 
 <!-- QUESTION 6 -->
 <div id="q6" class="screen">
-<h1>Question 6 😳</h1>
-<p>How many kids do we want?</p>
-<button onclick="wrong()">1</button>
-<button onclick="wrong()">2</button>
-<button onclick="correct('3 it is 😌💗')">3</button>
-<button onclick="alert('If YOU’ll deliver them, then I’m fine with even 20 😤')">11</button>
+  <h1>How many kids do we want? 😳</h1>
+  <button onclick="wrong()">1</button>
+  <button onclick="wrong()">2</button>
+  <button onclick="correct('3 sounds perfect 😌💗','q7')">3</button>
+  <button onclick="wrong('If YOU’ll deliver them, then I’m fine with even 20 😤')">11</button>
 </div>
 
 <!-- QUESTION 7 -->
 <div id="q7" class="screen">
-<h1>Final Question 💖</h1>
-<p>Will you be my forever Valentine?</p>
-<button onclick="alert('Error detected. You are already registered as my forever Valentine. 💘\\n👉 Please choose the correct answer.')">No</button>
-<button onclick="goTo('end')">YES 💍</button>
+  <h1>Will you be my forever Valentine? 💍</h1>
+  <button onclick="wrong('Error detected. You are already registered as my forever Valentine. 💘')">NO</button>
+  <button onclick="goTo('end')">YES 💖</button>
 </div>
 
-<!-- END --
+<!-- END -->
+<div id="end" class="screen">
+  <h1>YAYYYYY 🎉💖</h1>
+  <p>Your gifts are waiting 🎁</p>
+</div>
+
+<script>
+setTimeout(()=>{
+  document.getElementById("loader").classList.remove("active");
+  document.getElementById("intro").classList.add("active");
+},2500);
+
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function correct(msg,next){
+  alert(msg);
+  goTo(next);
+}
+function wrong(msg){
+  alert(msg || "Wrong 😤 try again");
+}
+</script>
+
+</body>
+</html>
 
 
