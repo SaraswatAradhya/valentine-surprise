@@ -51,4 +51,96 @@
     @keyframes float {
       0% { transform: translateY(0); }
       50% { transform: translateY(-40px); }
-      100% { transfor
+      100% { transform: translateY(0); }
+    }
+
+    /* Intro */
+    #intro h1 {
+      font-size: 30px;
+      color: #ff2f7d;
+      margin-bottom: 15px;
+    }
+
+    #intro p {
+      font-size: 18px;
+      color: #444;
+      max-width: 500px;
+    }
+
+    .start-btn {
+      margin-top: 25px;
+      padding: 12px 26px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      background: #ff4f9a;
+      color: white;
+      cursor: pointer;
+      animation: bounce 1.5s infinite;
+    }
+
+    .start-btn:hover {
+      background: #ff2f7d;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .cute-gif {
+      width: 180px;
+      margin: 15px 0;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating hearts -->
+  <div class="heart" style="top:10%; left:15%;">💖</div>
+  <div class="heart" style="top:30%; left:80%;">💗</div>
+  <div class="heart" style="top:70%; left:20%;">💞</div>
+  <div class="heart" style="top:60%; left:70%;">💕</div>
+
+  <!-- Loader Screen -->
+  <div id="loader" class="screen active">
+    <div>something special is loading… 💝</div>
+  </div>
+
+  <!-- Intro Screen -->
+  <div id="intro" class="screen">
+    <h1>Hi my loveeee 💕<br>Happiest Valentinessss 💖</h1>
+
+    <img
+      src="https://media.tenor.com/9w2c9FzP0sUAAAAi/love-bear.gif"
+      alt="cute gif"
+      class="cute-gif"
+    >
+
+    <p>
+      This Valentine, before your gift,<br>
+      let’s start your surprise with a lil quizzzz 😌💗
+    </p>
+
+    <button class="start-btn" onclick="startQuiz()">
+      Let’s begin the surprise 💘
+    </button>
+  </div>
+
+  <script>
+    // Loader to intro
+    setTimeout(() => {
+      document.getElementById("loader").classList.remove("active");
+      document.getElementById("intro").classList.add("active");
+    }, 2500);
+
+    function startQuiz() {
+      alert("Question 1 will come next 💕");
+    }
+  </script>
+
+</body>
+</html>
+
