@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Valentine Surprise 💖</title>
 
 <style>
@@ -10,104 +9,94 @@
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  text-align: center;
+  font-family: 'Segoe UI', cursive;
+  overflow: hidden;
 }
 
+/* COMMON SCREEN */
 .screen {
   display: none;
-  min-height: 100vh;
-  padding: 25px;
+  height: 100vh;
+  width: 100vw;
+  padding: 20px;
+  text-align: center;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: #333;
 }
 
 .active { display: flex; }
 
-button {
-  padding: 12px 26px;
-  border: none;
-  border-radius: 30px;
-  background: #ff4f9a;
-  color: white;
-  font-size: 16px;
-  margin: 10px;
-  cursor: pointer;
+/* FLOATING STICKERS */
+.sticker {
+  position: absolute;
+  width: 140px;
+  opacity: 0.9;
+  animation: float 6s ease-in-out infinite;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
 }
 
-button:hover { background: #ff2f7d; }
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-25px); }
+  100% { transform: translateY(0); }
+}
 
-/* ---------- LOADER ---------- */
+/* LOADER */
 #loader {
   background: url("https://i.pinimg.com/736x/57/2b/34/572b34942cca07a20b322a16b84c5db4.jpg") center/cover;
+  color: #ff2f7d;
+  font-size: 28px;
 }
 
-#loader img {
-  width: 180px;
+.loader-gif {
+  width: 160px;
+  margin-top: 20px;
 }
 
-/* ---------- INTRO ---------- */
+/* INTRO */
 #intro {
   background: url("https://i.pinimg.com/736x/57/2b/34/572b34942cca07a20b322a16b84c5db4.jpg") center/cover;
 }
 
-.intro-sticker {
-  width: 180px;
-  margin: 10px;
+#intro h1 {
+  color: #ff2f7d;
 }
 
-/* ---------- QUIZ ---------- */
-#quiz {
-  background: url("https://i.pinimg.com/originals/3a/90/8c/3a908c2c6e1d11e24a1a8a391ff6e3ae.gif") center/cover;
-  color: #fff;
-}
-
-.option {
-  width: 80%;
-  max-width: 320px;
-  background: rgba(255,255,255,0.9);
-  color: #333;
-}
-
-/* ---------- GIFT ---------- */
-#gift {
-  background: linear-gradient(135deg,#1c1c2b,#3a2a4d);
-  color: #fff;
-}
-
-.gift-box {
-  width: 150px;
-  height: 150px;
-  border: 2px dashed pink;
-  border-radius: 20px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
+.start-btn {
+  padding: 12px 26px;
   font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  background: #ff4f9a;
+  color: white;
   cursor: pointer;
 }
 
-/* ---------- BOUQUET / TEDDY ---------- */
-#bouquet, #teddy {
-  background: #fff0f6;
+/* QUESTIONS */
+#quiz {
+  background: url("https://i.pinimg.com/1200x/8e/71/21/8e7121219bc2b06a1e2fc1fe19be7ef6.jpg") center/cover;
 }
 
-.mini {
-  margin: 8px;
-  font-size: 18px;
+.option {
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background: #fff;
+  cursor: pointer;
 }
 
-/* ---------- LETTER ---------- */
+/* GIFTS */
+#gift {
+  background: #0f0f1f;
+  color: #fff;
+}
+
+/* LETTER */
 #letter {
-  background: #fff7ea;
-  font-size: 17px;
-}
-
-/* ---------- QR ---------- */
-#qr {
-  background: #ffe6f0;
+  background: url("https://in.pinterest.com/pin/24277285507764177/") center/cover;
 }
 </style>
 </head>
@@ -116,114 +105,87 @@ button:hover { background: #ff2f7d; }
 
 <!-- LOADER -->
 <div id="loader" class="screen active">
-  <img src="https://i.pinimg.com/originals/1d/7f/2a/1d7f2ad30dcc623ef26a20c86b46a9ad.gif">
-  <h2>Something special is loading… 💗</h2>
+  <div>Something special is loading… 💝</div>
+  <img class="loader-gif" src="https://i.pinimg.com/originals/1d/7f/2a/1d7f2ad30dcc623ef26a20c86b46a9ad.gif">
 </div>
 
 <!-- INTRO -->
 <div id="intro" class="screen">
-  <h1>Hi my loveeee 💕</h1>
-  <img class="intro-sticker" src="https://i.pinimg.com/1200x/13/dd/f9/13ddf9ef3bf5ca26245ae70f8b658669.jpg">
-  <img class="intro-sticker" src="https://i.pinimg.com/736x/91/a4/7d/91a47d37d057d9371a89533f24b89f78.jpg">
-  <p>Happiest Valentinessss 💖<br>Let’s start with a lil quizzzz 😌</p>
-  <button onclick="show('quiz')">Start 💘</button>
+  <h1>Hi my loveeee 💕<br>Happiest Valentines 💖</h1>
+  <p>Before your gift… a lil quizzzz 😌</p>
+  <button class="start-btn" onclick="startQuiz()">Let’s Begin 💘</button>
+
+  <img class="sticker" style="top:10%; left:5%" src="https://i.pinimg.com/1200x/13/dd/f9/13ddf9ef3bf5ca26245ae70f8b658669.jpg">
+  <img class="sticker" style="bottom:10%; right:5%" src="https://i.pinimg.com/736x/91/a4/7d/91a47d37d057d9371a89533f24b89f78.jpg">
 </div>
 
 <!-- QUIZ -->
 <div id="quiz" class="screen">
-  <h2 id="q"></h2>
-  <div id="opts"></div>
-  <p id="react"></p>
-  <button id="next" onclick="nextQ()" style="display:none;">Next 💗</button>
+  <h2 id="question"></h2>
+  <div id="options"></div>
+
+  <img class="sticker" style="top:5%; right:5%" src="https://i.pinimg.com/originals/3a/90/8c/3a908c2c6e1d11e24a1a8a391ff6e3ae.gif">
 </div>
 
 <!-- GIFT -->
 <div id="gift" class="screen">
   <h2>Choose your gift 🎁</h2>
-  <div class="gift-box" onclick="show('bouquet')">Gift 1</div>
-  <div class="gift-box" onclick="show('teddy')">Gift 2</div>
-</div>
+  <p>Gift 1</p>
+  <p>Gift 2</p>
 
-<!-- BOUQUET -->
-<div id="bouquet" class="screen">
-  <img src="https://i.pinimg.com/736x/0f/3f/ec/0f3fecc4a781e3eaf72237bceeef672f.jpg" width="200">
-  <div class="mini">You are the bestest part of my life.</div>
-  <div class="mini">I will always love you no matter what.</div>
-  <div class="mini">You are all my 11:11 wishes.</div>
-  <div class="mini">You mean the universe to me.</div>
-  <button onclick="show('letter')">Next 💌</button>
-</div>
-
-<!-- TEDDY -->
-<div id="teddy" class="screen">
-  <img src="https://i.pinimg.com/1200x/b7/c4/64/b7c464ec356aa413818e44a49e32756a.jpg" width="200">
-  <div class="mini">Hey my forever valentineeeee…</div>
-  <div class="mini">I can’t imagine my life without you.</div>
-  <div class="mini">You hold my heart.</div>
-  <div class="mini">You’re my best choice ever.</div>
-  <button onclick="show('letter')">Next 💌</button>
-</div>
-
-<!-- LETTER -->
-<div id="letter" class="screen">
-  <p>
-    To the love of my lifeeee…<br><br>
-    I love you wholeheartedly and can’t wait to spend my life with you 💖<br><br>
-    I LOVEEEE YOUUUU A LOT BEBUUU ❤️
-  </p>
-  <button onclick="show('qr')">Final surprise 🎀</button>
-</div>
-
-<!-- QR -->
-<div id="qr" class="screen">
-  <h2>Scan this 💗</h2>
-  <!-- replace with your QR image -->
-  <img src="YOUR_QR_IMAGE_URL_HERE" width="220">
+  <img class="sticker" style="bottom:5%; left:5%" src="https://i.pinimg.com/736x/0f/3f/ec/0f3fecc4a781e3eaf72237bceeef672f.jpg">
 </div>
 
 <script>
-const qs=[
- {q:"Where did we first interact?",o:["WhatsApp","Instagram","Telegram","Snapchat"],c:"Instagram",m:"That’s where it all started 💗"},
- {q:"Will you be my forever Valentine?",o:["Yes ❤️","No 😏"],c:"Yes ❤️",m:"Error 😤 You are already mine forever"}
+const questions = [
+  { q: "Who is my forever Valentine? 💕", a: ["You 😌"] },
+  { q: "Do you know how much I love you?", a: ["Infinity ♾️"] },
+  { q: "Will you always be mine?", a: ["Always 💖"] }
 ];
-let i=0;
 
-function show(id){
- document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
- document.getElementById(id).classList.add('active');
+let current = 0;
+
+setTimeout(() => {
+  showScreen("intro");
+}, 2500);
+
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 
-function load(){
- document.getElementById("q").innerText=qs[i].q;
- const o=document.getElementById("opts");
- o.innerHTML="";
- qs[i].o.forEach(x=>{
-  const b=document.createElement("button");
-  b.className="option";
-  b.innerText=x;
-  b.onclick=()=>check(x);
-  o.appendChild(b);
- });
+function startQuiz() {
+  showScreen("quiz");
+  loadQuestion();
 }
 
-function check(a){
- if(a===qs[i].c){
-  document.getElementById("react").innerHTML=qs[i].m;
-  document.getElementById("next").style.display="block";
- }
+function loadQuestion() {
+  document.getElementById("question").innerText = questions[current].q;
+  const optDiv = document.getElementById("options");
+  optDiv.innerHTML = "";
+
+  questions[current].a.forEach(ans => {
+    const btn = document.createElement("button");
+    btn.className = "option";
+    btn.innerText = ans;
+    btn.onclick = nextQuestion;
+    optDiv.appendChild(btn);
+  });
 }
 
-function nextQ(){
- i++;
- if(i<qs.length){ load(); document.getElementById("next").style.display="none"; }
- else show("gift");
+function nextQuestion() {
+  current++;
+  if (current < questions.length) {
+    loadQuestion();
+  } else {
+    showScreen("gift");
+  }
 }
-
-setTimeout(()=>{ show("intro"); load(); },2500);
 </script>
 
 </body>
 </html>
+
 
 
 
