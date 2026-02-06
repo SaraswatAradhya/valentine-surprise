@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Valentine 💗</title>
-
-  <link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8">
+  <title>Valentine Surprise 💖</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ffd6e8, #ffeaf4);
-      text-align: center;
+      font-family: 'Segoe UI', cursive;
+      background: linear-gradient(135deg, #ffd6e8, #ffeef5);
       overflow: hidden;
     }
 
     .screen {
       display: none;
       height: 100vh;
-      width: 100%;
+      width: 100vw;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      text-align: center;
       padding: 20px;
     }
 
@@ -30,63 +26,29 @@
       display: flex;
     }
 
-    h1 {
-      color: #ff4d88;
-      font-size: 2.2rem;
+    /* Loader */
+    #loader {
+      font-size: 28px;
+      color: #ff4f9a;
+      animation: pulse 1.5s infinite;
     }
 
-    p {
-      color: #444;
-      font-size: 1.1rem;
-      max-width: 600px;
+    @keyframes pulse {
+      0% { opacity: 0.4; }
+      50% { opacity: 1; }
+      100% { opacity: 0.4; }
     }
 
-    button {
-      margin-top: 25px;
-      padding: 12px 28px;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 30px;
-      background: #ff4d88;
-      color: white;
-      cursor: pointer;
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      color: #ff6fa5;
+      font-size: 24px;
+      animation: float 6s infinite ease-in-out;
+      opacity: 0.6;
     }
 
-    button:hover {
-      background: #ff2f73;
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- LOADER -->
-  <div id="loader" class="screen active">
-    <h1>Something special is loading… 💕</h1>
-  </div>
-
-  <!-- INTRO -->
-  <div id="intro" class="screen">
-    <h1>Hi my loveeee 💖</h1>
-    <p>
-      Happiest Valentinessss 💘<br><br>
-      So this Valentine, before your gift,
-      let’s begin the surprise with a lil quizzzz…
-    </p>
-    <button onclick="startQuiz()">Let’s begin the surprise 💘</button>
-  </div>
-
-<script>
-  alert("JS is working 💖");
-
-  document.getElementById("loader").classList.remove("active");
-  document.getElementById("intro").classList.add("active");
-
-  function startQuiz() {
-    alert("Quiz coming next 💕");
-  }
-</script>
-
-
-</body>
-</html>
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-40px); }
+      100% { transfor
