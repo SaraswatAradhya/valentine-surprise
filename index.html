@@ -2,229 +2,212 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>My Valentine 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You ❤️</title>
 
 <style>
-html,body{
-  margin:0;
-  padding:0;
-  font-family:'Segoe UI',cursive;
-  overflow-x:hidden;
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  overflow-x: hidden;
 }
 
-/* COMMON SCREEN */
-.screen{
-  display:none;
-  min-height:100vh;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  text-align:center;
-  padding:20px;
-  position:relative;
+/* ---------- SCREENS ---------- */
+.screen {
+  display: none;
+  min-height: 100vh;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-/* FLOATING STICKERS */
-.sticker{
-  position:absolute;
-  width:80px;
-  animation:float 6s ease-in-out infinite;
-  opacity:.8;
-}
-@keyframes float{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-30px)}
-  100%{transform:translateY(0)}
+.active {
+  display: flex;
 }
 
-/* LOADER */
-#loading{
-  display:flex;
-  background:linear-gradient(135deg,#ffd6e8,#ffeef5);
-}
-#loading img{width:200px}
-
-/* INTRO */
-#intro{
-  background:linear-gradient(135deg,#ffe1ef,#fff0f6);
-}
-.start-btn{
-  padding:14px 30px;
-  font-size:18px;
-  border:none;
-  border-radius:30px;
-  background:#ff4f9a;
-  color:white;
-  cursor:pointer;
+/* ---------- LOADER ---------- */
+#loader {
+  background: linear-gradient(135deg,#ffd1e8,#fff);
 }
 
-/* QUIZ */
-#quiz-container{
-  background:linear-gradient(135deg,#fbeaff,#fff6fb);
-}
-#quiz-container img{width:220px}
-button{
-  margin:8px;
-  padding:10px 18px;
-  border:none;
-  border-radius:12px;
-  cursor:pointer;
+#loader img {
+  width: 180px;
 }
 
-/* GIFT SCREEN */
-#gift-screen{
-  background:linear-gradient(135deg,#1b0010,#33001f);
-  color:white;
-}
-.gift-card{
-  width:160px;
-  height:160px;
-  margin:15px;
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-  border-radius:20px;
-  border:2px dashed pink;
-  background:#2a0017;
-  cursor:pointer;
-  color:white;
+#loader h2 {
+  color: #ff4f9a;
 }
 
-/* MESSAGE SCREENS */
-#bouquet-screen,#teddy-screen,#letter-screen,#qr-screen{
-  background:linear-gradient(135deg,#fff0f6,#ffe4f1);
+/* ---------- INTRO ---------- */
+#intro {
+  background: linear-gradient(135deg,#ffe6f0,#fff0f7);
 }
 
-.mini-message{font-size:1.2rem;margin:8px}
+#intro img {
+  width: 220px;
+  margin: 15px;
+}
+
+.start-btn {
+  padding: 12px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  background: #ff4f9a;
+  color: white;
+  cursor: pointer;
+}
+
+/* ---------- QUIZ ---------- */
+#quiz {
+  background: linear-gradient(135deg,#fff0f5,#ffd6e8);
+}
+
+.quiz-gif {
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+button.option {
+  margin: 8px;
+  padding: 10px 18px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: #ff77aa;
+  color: white;
+}
+
+/* ---------- GIFTS ---------- */
+#gift {
+  background: radial-gradient(circle,#1b0010,#000);
+  color: white;
+}
+
+.gift-box {
+  background: #ff4f9a;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* ---------- FLOATING STICKERS ---------- */
+.sticker {
+  position: fixed;
+  width: 60px;
+  animation: float 6s infinite;
+  opacity: 0.7;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-40px); }
+  100% { transform: translateY(0); }
+}
 </style>
 </head>
 
 <body>
 
-<!-- LOADER -->
-<div id="loading" class="screen">
-  <img src="https://media.tenor.com/9w2c9FzP0sUAAAAi/love-bear.gif">
-  <h2>Something special is loading… 💗</h2>
+<!-- STICKERS -->
+<img src="https://media.tenor.com/9w2c9FzP0sUAAAAi/love-bear.gif" class="sticker" style="top:10%;left:5%;">
+<img src="https://media.tenor.com/8hGxkK1H9nYAAAAi/heart-love.gif" class="sticker" style="bottom:10%;right:5%;">
 
-  <img class="sticker" style="top:10%;left:10%" src="https://media.tenor.com/jU9F0Z0yX7AAAAAi/heart.gif">
-  <img class="sticker" style="bottom:15%;right:10%" src="https://media.tenor.com/jU9F0Z0yX7AAAAAi/heart.gif">
+<!-- LOADER -->
+<div id="loader" class="screen active">
+  <img src="https://media.tenor.com/0AVbKGY_MxMAAAAi/heart.gif">
+  <h2>Something special is loading… 💗</h2>
 </div>
 
 <!-- INTRO -->
 <div id="intro" class="screen">
-  <h1>Hi my loveeee 💕<br>Happiest Valentinessss 💖</h1>
-  <img src="https://media.tenor.com/kz9F9FhW4H8AAAAi/love.gif">
-  <p>This Valentine, before your gift,<br>let’s start your surprise with a lil quizzzz 😌💗</p>
-  <button class="start-btn" onclick="startQuiz()">Let’s begin 💘</button>
-
-  <img class="sticker" style="top:8%;right:8%" src="https://media.tenor.com/jU9F0Z0yX7AAAAAi/heart.gif">
+  <h1>Hi my loveeee 💕</h1>
+  <img src="https://media.tenor.com/9w2c9FzP0sUAAAAi/love-bear.gif">
+  <p>Before your surprise… let’s play a lil quiz 😌</p>
+  <button class="start-btn" onclick="startQuiz()">Start 💘</button>
 </div>
 
 <!-- QUIZ -->
-<div id="quiz-container" class="screen">
-  <img src="https://media.tenor.com/4Q2G4fF0s9AAAAAi/love-question.gif">
+<div id="quiz" class="screen">
+  <img class="quiz-gif" src="https://media.tenor.com/jnINmC4c1fAAAAAi/cute-love.gif">
+  <h2 id="question"></h2>
+  <div id="options"></div>
+  <p id="reaction"></p>
 </div>
 
 <!-- GIFT -->
-<div id="gift-screen" class="screen">
-  <h2>Choose your Valentine gift 💘</h2>
-  <div>
-    <div class="gift-card" onclick="startGift('bouquet')">Gift 1</div>
-    <div class="gift-card" onclick="startGift('teddy')">Gift 2</div>
-  </div>
-</div>
-
-<!-- BOUQUET -->
-<div id="bouquet-screen" class="screen">
-  <h2>🌸 Bouquet 🌸</h2>
-  <div class="mini-message">You are the bestest part of my life.</div>
-  <div class="mini-message">I will always love you no matter what.</div>
-  <div class="mini-message">You are all my 11:11 wishes.</div>
-  <div class="mini-message">You mean the universe to me.</div>
-  <button onclick="nextGiftFlow('letter')">Next 💌</button>
-</div>
-
-<!-- TEDDY -->
-<div id="teddy-screen" class="screen">
-  <h2>🧸 Teddy 🧸</h2>
-  <div class="mini-message">Hey my forever valentineeeee…</div>
-  <div class="mini-message">I can’t imagine my life without you.</div>
-  <div class="mini-message">You hold my heart.</div>
-  <div class="mini-message">Bestest choice ever.</div>
-  <button onclick="nextGiftFlow('letter')">Next 💌</button>
-</div>
-
-<!-- LETTER -->
-<div id="letter-screen" class="screen">
-  <p style="max-width:600px">
-    I LOVEEEEEEE YOUUUUUUU A LOTTTTTT BEBUUUU ❤️
-  </p>
-  <button onclick="nextGiftFlow('qr')">Final surprise 🎀</button>
-</div>
-
-<!-- QR -->
-<div id="qr-screen" class="screen">
-  <h2>Scan this 💗</h2>
-  <img src="assets/heart-qr.png" width="200">
+<div id="gift" class="screen">
+  <h2>Choose your Valentine gift 🎁</h2>
+  <div class="gift-box">🌹 Bouquet</div>
+  <div class="gift-box">🧸 Teddy</div>
 </div>
 
 <script>
-setTimeout(()=>{
-  document.getElementById("loading").style.display="none";
-  document.getElementById("intro").style.display="flex";
-},3000);
+const screens = ["loader","intro","quiz","gift"];
+const show = id => {
+  screens.forEach(s=>document.getElementById(s).classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+};
 
-function startQuiz(){
-  document.getElementById("intro").style.display="none";
-  document.getElementById("quiz-container").style.display="flex";
-  loadQuestion();
-}
+/* LOADER → INTRO */
+setTimeout(()=>show("intro"),3000);
 
-/* YOUR QUESTIONS – UNCHANGED */
-const questions=[
- {q:"Where did we first interact with each other?",options:["WhatsApp","Instagram","Telegram","Snapchat"],correct:["Instagram"]},
- {q:"The date you confessed your feelings?",options:["19 August","21 August","22 August","23 August"],correct:["22 August"]},
- {q:"Will you be my forever Valentine?",options:["Yes ❤️","No 😏"],correct:["Yes ❤️"]}
+/* QUIZ DATA */
+const questions = [
+  {
+    q: "Where did we first interact?",
+    options:["Instagram","WhatsApp","Snapchat"],
+    correct:"Instagram"
+  },
+  {
+    q: "Will you be my forever Valentine?",
+    options:["Yes ❤️","No 😏"],
+    correct:"Yes ❤️"
+  }
 ];
 
-let current=0;
+let i = 0;
 
-function loadQuestion(){
-  const q=questions[current];
-  quiz-container.innerHTML+=`
-    <h2>${q.q}</h2>
-    ${q.options.map(o=>`<button onclick="answer('${o}')">${o}</button>`).join("")}
-    <p id="reaction"></p>
-  `;
+function startQuiz() {
+  show("quiz");
+  loadQ();
 }
 
-function answer(a){
-  if(questions[current].correct.includes(a)){
-    current++;
-    quiz-container.innerHTML="";
-    if(current<questions.length) loadQuestion();
-    else{
-      quiz-container.style.display="none";
-      gift-screen.style.display="flex";
-    }
-  }else document.getElementById("reaction").innerHTML="😤 try again";
+function loadQ() {
+  const q = questions[i];
+  document.getElementById("question").innerText = q.q;
+  const opt = document.getElementById("options");
+  opt.innerHTML = "";
+  q.options.forEach(o=>{
+    const b = document.createElement("button");
+    b.className="option";
+    b.innerText=o;
+    b.onclick=()=>check(o);
+    opt.appendChild(b);
+  });
 }
 
-function startGift(g){
-  gift-screen.style.display="none";
-  document.getElementById(g+"-screen").style.display="flex";
-}
-
-function nextGiftFlow(s){
-  bouquet-screen.style.display="none";
-  teddy-screen.style.display="none";
-  document.getElementById(s+"-screen").style.display="flex";
+function check(ans){
+  if(ans===questions[i].correct){
+    document.getElementById("reaction").innerText="Correct 💗";
+    i++;
+    setTimeout(()=>{
+      i<questions.length ? loadQ() : show("gift");
+    },800);
+  } else {
+    document.getElementById("reaction").innerText="Try again 😤";
+  }
 }
 </script>
 
 </body>
 </html>
+
 
 
 
