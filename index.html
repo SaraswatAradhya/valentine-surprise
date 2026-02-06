@@ -1,167 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Valentine Surprise 💖</title>
+<meta charset="UTF-8">
+<title>Valentine Surprise 💖</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', cursive;
-      background: linear-gradient(135deg, #ffd6e8, #ffeef5);
-      overflow: hidden;
-    }
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI', cursive;
+  background:linear-gradient(135deg,#ffd6e8,#fff0f6);
+  overflow:hidden;
+}
 
-    .screen {
-      display: none;
-      height: 100vh;
-      width: 100vw;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-      padding: 20px;
-    }
+.screen{
+  display:none;
+  height:100vh;
+  width:100vw;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
 
-    .active {
-      display: flex;
-    }
+.active{display:flex;}
 
-    /* Loader */
-    #loader {
-      font-size: 28px;
-      color: #ff4f9a;
-      animation: pulse 1.5s infinite;
-    }
+h1{color:#ff2f7d;}
+p{font-size:18px; color:#444;}
 
-    @keyframes pulse {
-      0% { opacity: 0.4; }
-      50% { opacity: 1; }
-      100% { opacity: 0.4; }
-    }
+button{
+  margin:8px;
+  padding:12px 24px;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
+  cursor:pointer;
+  background:#ff5fa2;
+  color:white;
+}
 
-    /* Floating hearts */
-    .heart {
-      position: absolute;
-      font-size: 24px;
-      animation: float 6s infinite ease-in-out;
-      opacity: 0.6;
-    }
+button:hover{background:#ff2f7d;}
 
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-40px); }
-      100% { transform: translateY(0); }
-    }
+.cute-gif{
+  width:170px;
+  border-radius:20px;
+  margin:15px 0;
+}
 
-    h1 {
-      color: #ff2f7d;
-    }
-
-    p {
-      font-size: 18px;
-      color: #444;
-      max-width: 500px;
-    }
-
-    .start-btn {
-      margin: 10px;
-      padding: 12px 26px;
-      font-size: 18px;
-      border: none;
-      border-radius: 30px;
-      background: #ff4f9a;
-      color: white;
-      cursor: pointer;
-      animation: bounce 1.5s infinite;
-    }
-
-    .start-btn:hover {
-      background: #ff2f7d;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-
-    .cute-gif {
-      width: 180px;
-      margin: 15px 0;
-      border-radius: 20px;
-    }
-  </style>
+/* Loader */
+#loader{
+  font-size:28px;
+  color:#ff4f9a;
+  animation:pulse 1.5s infinite;
+}
+@keyframes pulse{
+  0%{opacity:.4}
+  50%{opacity:1}
+  100%{opacity:.4}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- Floating hearts -->
-  <div class="heart" style="top:10%; left:15%;">💖</div>
-  <div class="heart" style="top:30%; left:80%;">💗</div>
-  <div class="heart" style="top:70%; left:20%;">💞</div>
-  <div class="heart" style="top:60%; left:70%;">💕</div>
+<!-- LOADER -->
+<div id="loader" class="screen active">
+  <div>something special is loading… 💝</div>
+</div>
 
-  <!-- Loader Screen -->
-  <div id="loader" class="screen active">
-    <div>something special is loading… 💝</div>
-  </div>
+<!-- INTRO -->
+<div id="intro" class="screen">
+  <h1>Hi my loveeee 💕<br>Happiest Valentinessss 💖</h1>
 
-  <!-- Intro Screen -->
-  <div id="intro" class="screen">
-    <h1>Hi my loveeee 💕<br>Happiest Valentinessss 💖</h1>
+  <img src="https://media.tenor.com/9w2c9FzP0sUAAAAi/love-bear.gif" class="cute-gif">
 
-    <img
-      src="https://media.tenor.com/9w2c9FzP0sUAAAAi/love-bear.gif"
-      class="cute-gif"
-    >
+  <p>
+    This Valentine, before your gift,<br>
+    let’s start your surprise with a lil quizzzz 😌💗
+  </p>
 
-    <p>
-      This Valentine, before your gift,<br>
-      let’s start your surprise with a lil quizzzz 😌💗
-    </p>
+  <button onclick="goTo('q1')">Let’s begin the surprise 💘</button>
+</div>
 
-    <button class="start-btn" onclick="startQuiz()">
-      Let’s begin the surprise 💘
-    </button>
-  </div>
+<!-- QUESTION 1 -->
+<div id="q1" class="screen">
+<h1>Question 1 💕</h1>
+<p>Where did we first interact with each other?</p>
+<button onclick="wrong()">WhatsApp</button>
+<button onclick="correct('Instagram 😌💖')">Instagram</button>
+<button onclick="wrong()">Telegram</button>
+<button onclick="wrong()">Snapchat</button>
+</div>
 
-  <!-- Question 1 -->
-  <div id="q1" class="screen">
-    <h1>Question 1 💕</h1>
+<!-- QUESTION 2 -->
+<div id="q2" class="screen">
+<h1>Question 2 😤</h1>
+<p>The date you confessed your feelings?</p>
+<button onclick="wrong('I am killing you after this 😤')">19 Aug 2024</button>
+<button onclick="wrong('I am killing you after this 😤')">21 Aug 2024</button>
+<button onclick="correct('22 Aug 2024 💘')">22 Aug 2024</button>
+<button onclick="wrong('I am killing you after this 😤')">23 Aug 2024</button>
+</div>
 
-    <img
-      src="https://media.tenor.com/0AVbKGY_MxMAAAAi/cute-love.gif"
-      class="cute-gif"
-    >
+<!-- QUESTION 3 -->
+<div id="q3" class="screen">
+<h1>Question 3 🥹</h1>
+<p>One gift that touched your heart the most?</p>
+<button onclick="correct('Awww 🥹💗')">Muffler</button>
+<button onclick="wrong()">Handmade cards</button>
+<button onclick="correct('That means everything 🥹💖')">Imaginary hugging painting</button>
+<button onclick="wrong()">Bracelet</button>
+</div>
 
-    <p>Who is my forever valentine? 🥹💗</p>
+<!-- QUESTION 4 -->
+<div id="q4" class="screen">
+<h1>Question 4 ✨</h1>
+<p>One place where I want us to go first?</p>
+<button onclick="correct('Yes yes yes 😌💗')">Banaras</button>
+<button onclick="wrong()">Kashmir</button>
+<button onclick="wrong()">Lucknow</button>
+<button onclick="wrong()">Uttarakhand</button>
+</div>
 
-    <button class="start-btn" onclick="correctAnswer()">You 😌💖</button>
-    <button class="start-btn" onclick="wrongAnswer()">Anyone else 🙃</button>
-  </div>
+<!-- QUESTION 5 -->
+<div id="q5" class="screen">
+<h1>Question 5 💕</h1>
+<p>One place where YOU want to take me first?</p>
+<button onclick="wrong()">Manali</button>
+<button onclick="wrong()">Shimla</button>
+<button onclick="correct('Okay fine 😌💖')">Kashmir</button>
+<button onclick="wrong()">Darjeeling</button>
+</div>
 
-  <script>
-    // Loader → Intro
-    setTimeout(() => {
-      document.getElementById("loader").classList.remove("active");
-      document.getElementById("intro").classList.add("active");
-    }, 2500);
+<!-- QUESTION 6 -->
+<div id="q6" class="screen">
+<h1>Question 6 😳</h1>
+<p>How many kids do we want?</p>
+<button onclick="wrong()">1</button>
+<button onclick="wrong()">2</button>
+<button onclick="correct('3 it is 😌💗')">3</button>
+<button onclick="alert('If YOU’ll deliver them, then I’m fine with even 20 😤')">11</button>
+</div>
 
-    function startQuiz() {
-      document.getElementById("intro").classList.remove("active");
-      document.getElementById("q1").classList.add("active");
-    }
+<!-- QUESTION 7 -->
+<div id="q7" class="screen">
+<h1>Final Question 💖</h1>
+<p>Will you be my forever Valentine?</p>
+<button onclick="alert('Error detected. You are already registered as my forever Valentine. 💘\\n👉 Please choose the correct answer.')">No</button>
+<button onclick="goTo('end')">YES 💍</button>
+</div>
 
-    function correctAnswer() {
-      alert("Yayyyy 🥹💖 Correct answer!");
-    }
-
-    function wrongAnswer() {
-      alert("Nopeeee 😤 Try again!");
-    }
-  </script>
-
-</body>
-</html>
+<!-- END --
 
 
