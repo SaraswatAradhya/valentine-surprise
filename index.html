@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Valentine Surprise 💖</title>
+
   <style>
     body {
       margin: 0;
@@ -42,7 +43,6 @@
     /* Floating hearts */
     .heart {
       position: absolute;
-      color: #ff6fa5;
       font-size: 24px;
       animation: float 6s infinite ease-in-out;
       opacity: 0.6;
@@ -54,21 +54,18 @@
       100% { transform: translateY(0); }
     }
 
-    /* Intro */
-    #intro h1 {
-      font-size: 30px;
+    h1 {
       color: #ff2f7d;
-      margin-bottom: 15px;
     }
 
-    #intro p {
+    p {
       font-size: 18px;
       color: #444;
       max-width: 500px;
     }
 
     .start-btn {
-      margin-top: 25px;
+      margin: 10px;
       padding: 12px 26px;
       font-size: 18px;
       border: none;
@@ -85,7 +82,7 @@
 
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      50% { transform: translateY(-6px); }
     }
 
     .cute-gif {
@@ -115,7 +112,6 @@
 
     <img
       src="https://media.tenor.com/9w2c9FzP0sUAAAAi/love-bear.gif"
-      alt="cute gif"
       class="cute-gif"
     >
 
@@ -129,18 +125,43 @@
     </button>
   </div>
 
+  <!-- Question 1 -->
+  <div id="q1" class="screen">
+    <h1>Question 1 💕</h1>
+
+    <img
+      src="https://media.tenor.com/0AVbKGY_MxMAAAAi/cute-love.gif"
+      class="cute-gif"
+    >
+
+    <p>Who is my forever valentine? 🥹💗</p>
+
+    <button class="start-btn" onclick="correctAnswer()">You 😌💖</button>
+    <button class="start-btn" onclick="wrongAnswer()">Anyone else 🙃</button>
+  </div>
+
   <script>
-    // Loader to intro
+    // Loader → Intro
     setTimeout(() => {
       document.getElementById("loader").classList.remove("active");
       document.getElementById("intro").classList.add("active");
     }, 2500);
 
     function startQuiz() {
-      alert("Question 1 will come next 💕");
+      document.getElementById("intro").classList.remove("active");
+      document.getElementById("q1").classList.add("active");
+    }
+
+    function correctAnswer() {
+      alert("Yayyyy 🥹💖 Correct answer!");
+    }
+
+    function wrongAnswer() {
+      alert("Nopeeee 😤 Try again!");
     }
   </script>
 
 </body>
 </html>
+
 
