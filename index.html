@@ -4,83 +4,121 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Valentine Surprise 💖</title>
+
 <style>
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  overflow-x: hidden;
-  background-color: #ffe6f0;
-}
-.screen {
-  display: none;
-  min-height: 100vh;
-  padding: 20px;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  display: flex;
-  position: relative;
-  background-size: cover;
-  background-position: center;
-}
-.active { display: flex; }
-button {
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  background-color: #ff4d88;
-  color: white;
-  transition: 0.3s;
-}
-button:hover { background-color: #ff2f70; }
-.gift-card {
-  width: 150px;
-  height: 150px;
-  margin: 20px;
-  display: inline-block;
-  border: 2px dashed #ff4d94;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 1rem;
-  line-height: 150px;
-  background-color: #fff0f5;
-  transition: transform 0.3s;
-  position: relative;
-}
-.gift-card:hover { transform: scale(1.1); }
-.mini-message { margin: 10px 0; font-size: 1.2rem; }
-.floating-heart {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  animation: floatUp linear infinite;
-}
-@keyframes floatUp {
-  0% { transform: translateY(100vh) scale(0.5); opacity:0; }
-  10% { opacity:1; }
-  100% { transform: translateY(-50vh) scale(1); opacity:0; }
-}
-#reaction { margin-top: 15px; font-weight: bold; }
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+    text-align: center;
+  }
+
+  .screen {
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+  }
+
+  h1,h2,p {
+    color: #fff;
+  }
+
+  button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 25px;
+    background: #ff4d88;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 8px;
+  }
+
+  button:hover {
+    background: #ff2f70;
+  }
+
+  /* Floating hearts animation */
+  .floating-heart {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(100vh) scale(0.5); opacity:0; }
+    10% { opacity:1; }
+    100% { transform: translateY(-50vh) scale(1); opacity:0; }
+  }
+
+  /* Gift Cards */
+  .gift-card {
+    width: 140px;
+    height: 140px;
+    margin: 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed pink;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(255,255,255,0.1);
+    transition: transform 0.3s;
+  }
+  .gift-card:hover { transform: scale(1.1); }
+
+  .mini-message {
+    margin: 8px;
+    font-size: 18px;
+    color: #333;
+  }
+
+  #reaction {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #fff;
+  }
+
 </style>
 </head>
+
 <body>
 
-<!-- LOADER -->
-<div id="loading" class="screen active" style="background-image:url('assets/loader-bg.jpg');">
-  <img src="assets/loader-heart.gif" width="180">
+<!-- LOADING SCREEN -->
+<div id="loader" class="screen" style="display:flex; background-image:url('https://i.pinimg.com/736x/57/2b/34/572b34942cca07a20b322a16b84c5db4.jpg');">
   <h1>Something special is loading… 💗</h1>
 </div>
 
-<!-- QUIZ SCREEN -->
-<div id="quiz-container" class="screen" style="background-image:url('assets/questions-bg.jpg');"></div>
+<!-- INTRO -->
+<div id="intro" class="screen" style="background-image:url('https://i.pinimg.com/1200x/13/dd/f9/13ddf9ef3bf5ca26245ae70f8b658669.jpg');">
+  <h1>Hi my loveeee 💕</h1>
+  <img src="https://i.pinimg.com/736x/91/a4/7d/91a47d37d057d9371a89533f24b89f78.jpg" width="200">
+  <p>Happiest Valentinessss 💖<br>Before your gift… let’s start with a lil quizzzz 😌</p>
+  <button onclick="nextScreen('quiz')">Let’s begin 💘</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="screen" style="background-image:url('https://i.pinimg.com/1200x/8e/71/21/8e7121219bc2b06a1e2fc1fe19be7ef6.jpg');">
+  <h2 id="question"></h2>
+  <div id="options"></div>
+  <p id="reaction"></p>
+  <button id="nextBtn" onclick="nextQuestion()" style="display:none;">Next 💗</button>
+</div>
 
 <!-- GIFT SELECTION -->
-<div id="gift-screen" class="screen" style="background-image:url('assets/gift-bg.jpg'); color:white;">
+<div id="gift" class="screen" style="background-image:url('https://i.pinimg.com/originals/1d/7f/2a/1d7f2ad30dcc623ef26a20c86b46a9ad.gif');">
   <h2>💘 Choose Your Valentine Gift 💘</h2>
   <p>(Choose wisely… both are dangerous 💗)</p>
   <div>
@@ -90,8 +128,8 @@ button:hover { background-color: #ff2f70; }
 </div>
 
 <!-- BOUQUET FLOW -->
-<div id="bouquet-screen" class="screen" style="background-image:url('assets/bouquet-bg.jpg');">
-  <img src="assets/bouquet.png" alt="Bouquet" width="200">
+<div id="bouquet" class="screen" style="background-image:url('https://in.pinterest.com/pin/109564203428986884/');">
+  <img src="https://i.pinimg.com/736x/0f/3f/ec/0f3fecc4a781e3eaf72237bceeef672f.jpg" width="200">
   <div class="mini-message">You are the bestest part of my life.</div>
   <div class="mini-message">I will always love you no matter what.</div>
   <div class="mini-message">You are all the 11:11, eyelashes, birthday candle wishes I ever made.</div>
@@ -100,8 +138,8 @@ button:hover { background-color: #ff2f70; }
 </div>
 
 <!-- TEDDY FLOW -->
-<div id="teddy-screen" class="screen" style="background-image:url('assets/teddy-bg.jpg');">
-  <img src="assets/teddy.png" alt="Teddy" width="200">
+<div id="teddy" class="screen" style="background-image:url('https://i.pinimg.com/originals/4151824650607452/');">
+  <img src="https://i.pinimg.com/1200x/b7/c4/64/b7c464ec356aa413818e44a49e32756a.jpg" width="200">
   <div class="mini-message">Hey my forever valentineeeee…</div>
   <div class="mini-message">I can’t imagine my life without you in it.</div>
   <div class="mini-message">You hold my heart and every beat of it.</div>
@@ -109,52 +147,43 @@ button:hover { background-color: #ff2f70; }
   <button onclick="nextGiftFlow('letter')">Next 💌</button>
 </div>
 
-<!-- LETTER SCREEN -->
-<div id="letter-screen" class="screen" style="background-image:url('assets/letter-bg.jpg');">
-  <p style="max-width:600px;margin:auto;line-height:1.6;font-size:1.1rem;">
-To the love of my lifeeee…<br><br>
-I love you wholeheartedly and I can’t wait to spend the rest of my life beside you and loving youuuu…<br>
-You make my life so meaningful just by existing, and I am damn lucky to have you as my better half.<br><br>
-I know I tell you this every now and then, but you really mean everything to me, and you are the most amazing person I have ever come across
-(bss kabhi kabhi gussa dila dete ho, woh baat alag hai 😌)<br><br>
-You know, I know, we know that we are each other’s forever Valentine.<br>
-I just hope we’ll always surprise each other on this day just like now.<br><br>
-So, to make this day even more special for my special one…<br>
-there is one more surprise waiting for you ahead 💗<br><br>
-<b>I LOVEEEEEEE YOUUUUUUU A LOTTTTTT BEBUUUU ❤️</b>
+<!-- LETTER -->
+<div id="letter" class="screen" style="background-image:url('https://in.pinterest.com/pin/24277285507764177/');">
+  <p style="max-width:600px;margin:auto;line-height:1.6;font-size:1.1rem;color:#333;">
+    To the love of my lifeeee…<br><br>
+    I love you wholeheartedly and I can’t wait to spend the rest of my life beside you and loving youuuu…<br>
+    You make my life so meaningful just by existing, and I am damn lucky to have you as my better half.<br><br>
+    I know I tell you this every now and then, but you really mean everything to me, and you are the most amazing person I have ever come across
+    (bss kabhi kabhi gussa dila dete ho, woh baat alag hai 😌)<br><br>
+    You know, I know, we know that we are each other’s forever Valentine.<br>
+    I just hope we’ll always surprise each other on this day just like now.<br><br>
+    So, to make this day even more special for my special one…<br>
+    there is one more surprise waiting for you ahead 💗<br><br>
+    <b>I LOVEEEEEEE YOUUUUUUU A LOTTTTTT BEBUUUU ❤️</b>
   </p>
   <button onclick="nextGiftFlow('qr')">Next 🎀</button>
 </div>
 
-<!-- QR SCREEN -->
-<div id="qr-screen" class="screen" style="background-image:url('assets/qr-bg.jpg');">
-  <img src="assets/heart-qr.png" alt="QR" width="200">
+<!-- QR -->
+<div id="qr" class="screen" style="background-image:url('https://in.pinterest.com/pin/632474341475120300/');">
+  <img src="assets/heart-qr.png" width="220">
   <p>Scan this for your final surprise…</p>
 </div>
 
 <script>
-// ----------------- FLOATING HEARTS -----------------
+// ------------------ FLOATING HEARTS ------------------
 function createHeart(){
   const heart = document.createElement("img");
-  heart.src = "assets/heart-sticker.gif";
+  heart.src = "assets/heart-sticker.gif"; // your heart sticker
   heart.className = "floating-heart";
   heart.style.left = Math.random()*90 + "vw";
   heart.style.animationDuration = (4+Math.random()*3) + "s";
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(),7000);
 }
-setInterval(createHeart, 800);
+setInterval(createHeart,800);
 
-// ----------------- LOADING -----------------
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('quiz-container').style.display = 'flex';
-    loadQuestion();
-  }, 3000);
-});
-
-// ----------------- QUESTIONS -----------------
+// ------------------ QUIZ ------------------
 const questions = [
   {
     q: "Where did we first interact with each other?",
@@ -210,9 +239,15 @@ const questions = [
 
 let current = 0;
 
-function loadQuestion() {
+function nextScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.style.display='none');
+  document.getElementById(id).style.display='flex';
+}
+
+function loadQuestion(){
   const q = questions[current];
-  document.getElementById("quiz-container").innerHTML = `
+  const quizDiv = document.getElementById("quiz");
+  quizDiv.innerHTML = `
     <h2>${q.q}</h2>
     <div id="options"></div>
     <p id="reaction"></p>
@@ -220,22 +255,22 @@ function loadQuestion() {
   `;
   const optionsDiv = document.getElementById("options");
   q.options.forEach(opt=>{
-    const btn = document.createElement("button");
-    btn.innerText = opt;
-    btn.onclick = ()=>handleAnswer(opt);
+    const btn=document.createElement("button");
+    btn.innerText=opt;
+    btn.onclick=()=>handleAnswer(opt);
     optionsDiv.appendChild(btn);
   });
 }
 
-function handleAnswer(selected){
+function handleAnswer(ans){
   const q = questions[current];
   const reaction = document.getElementById("reaction");
-  if(q.special && q.special[selected]){
-    reaction.innerHTML = q.special[selected];
-    if(selected==="3") document.getElementById("nextBtn").style.display="block";
+  if(q.special && q.special[ans]){
+    reaction.innerHTML = q.special[ans];
+    if(ans==="3") document.getElementById("nextBtn").style.display="block";
     return;
   }
-  if(q.correct.includes(selected)){
+  if(q.correct.includes(ans)){
     reaction.innerHTML = q.correctMsg || "Correct 💗";
     document.getElementById("nextBtn").style.display="block";
     if(current===questions.length-1) document.getElementById("nextBtn").innerText="Go to Gifts 🎁";
@@ -246,32 +281,25 @@ function nextQuestion(){
   current++;
   if(current<questions.length) loadQuestion();
   else {
-    document.getElementById("quiz-container").style.display="none";
+    nextScreen('gift');
     showConfetti();
-    setTimeout(()=>{document.getElementById("gift-screen").style.display="flex";},1000);
   }
 }
 
-// ----------------- GIFT FLOW -----------------
+// ------------------ GIFT FLOW ------------------
 function startGift(gift){
-  document.getElementById("gift-screen").style.display="none";
-  if(gift==="bouquet") document.getElementById("bouquet-screen").style.display="flex";
-  else document.getElementById("teddy-screen").style.display="flex";
+  nextScreen(gift==='bouquet'?'bouquet':'teddy');
 }
 
 function nextGiftFlow(screen){
-  document.getElementById("bouquet-screen").style.display="none";
-  document.getElementById("teddy-screen").style.display="none";
-  document.getElementById("letter-screen").style.display="none";
-  document.getElementById("qr-screen").style.display="none";
-  if(screen==="letter") document.getElementById("letter-screen").style.display="flex";
-  else if(screen==="qr") document.getElementById("qr-screen").style.display="flex";
+  if(screen==='letter') nextScreen('letter');
+  else if(screen==='qr') nextScreen('qr');
 }
 
-// ----------------- CONFETTI -----------------
+// ------------------ CONFETTI ------------------
 function showConfetti(){
   const confetti = document.createElement("img");
-  confetti.src = "assets/confetti.gif"; // replace with your confetti GIF
+  confetti.src = "assets/confetti.gif"; // your confetti GIF
   confetti.style.position="fixed";
   confetti.style.top="0";
   confetti.style.left="0";
@@ -281,6 +309,14 @@ function showConfetti(){
   document.body.appendChild(confetti);
   setTimeout(()=>confetti.remove(),4000);
 }
+
+// ------------------ LOAD ------------------
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    nextScreen('intro');
+    loadQuestion();
+  },2500);
+});
 </script>
 
 </body>
