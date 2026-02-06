@@ -1,9 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>For You ❤️</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Valentine 💗</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffd6e8, #ffeaf4);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .screen {
+      display: none;
+      height: 100vh;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .active {
+      display: flex;
+    }
+
+    h1 {
+      color: #ff4d88;
+      font-size: 2.2rem;
+    }
+
+    p {
+      color: #444;
+      font-size: 1.1rem;
+      max-width: 600px;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      background: #ff4d88;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ff2f73;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Something special is loading… 💗</h1>
+
+  <!-- LOADER -->
+  <div id="loader" class="screen active">
+    <h1>Something special is loading… 💕</h1>
+  </div>
+
+  <!-- INTRO -->
+  <div id="intro" class="screen">
+    <h1>Hi my loveeee 💖</h1>
+    <p>
+      Happiest Valentinessss 💘<br><br>
+      So this Valentine, before your gift,
+      let’s begin the surprise with a lil quizzzz…
+    </p>
+    <button onclick="startQuiz()">Let’s begin the surprise 💘</button>
+  </div>
+
+  <script>
+    // Show intro after loader
+    setTimeout(() => {
+      document.getElementById("loader").classList.remove("active");
+      document.getElementById("intro").classList.add("active");
+    }, 2500);
+
+    function startQuiz() {
+      alert("Quiz screen will come next 💕");
+    }
+  </script>
+
 </body>
 </html>
