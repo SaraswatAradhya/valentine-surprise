@@ -1,0 +1,115 @@
+/* ---------- GLOBAL RESET ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #000;
+  overflow: hidden;
+  color: #3b003b;
+}
+
+/* ---------- COMMON SCREEN ---------- */
+.screen {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
+
+/* ---------- TEXT ---------- */
+h1, h2, p {
+  text-align: center;
+  color: #3b003b;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+p {
+  font-size: 1.4rem;
+}
+
+/* ---------- FLOATING STICKERS ---------- */
+.sticker {
+  position: absolute;
+  width: 140px;          /* BIG */
+  height: auto;
+  animation: float 4s ease-in-out infinite;
+  border: none;
+  background: none;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+/* ---------- BUTTONS ---------- */
+button {
+  padding: 15px 35px;
+  font-size: 1.3rem;
+  border-radius: 40px;
+  border: none;
+  background: hotpink;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255,105,180,0.4);
+}
+
+/* ---------- PAGE BACKGROUNDS ---------- */
+#loader {
+  background-image: url("images/loader-bg.jpg");
+}
+
+#intro {
+  background-image: url("images/intro-bg.jpg");
+}
+
+#question {
+  background-image: url("images/question-bg.jpg");
+}
+
+#gift {
+  background-image: url("images/gift-bg.jpg");
+}
+
+#qr {
+  background-image: url("images/qr-bg.jpg");
+}
+
+/* ---------- CENTER CONTENT ---------- */
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- BOUQUET & TEDDY ---------- */
+.gift-img {
+  width: 220px;
+  animation: float 3s ease-in-out infinite;
+  border: none;
+}
+
+/* ---------- FLOATING MESSAGES ---------- */
+.floating-text {
+  position: absolute;
+  font-size: 1.2rem;
+  color: #4b004b;
+  animation: float 3s infinite;
+}
