@@ -2,217 +2,211 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>My Valentine 💜</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine Surprise 💖</title>
 
 <!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
-html,body{
-  margin:0;
-  padding:0;
+*{margin:0;padding:0;box-sizing:border-box}
+body{
   font-family:'Playfair Display',serif;
+  color:#3b145f;
   overflow:hidden;
 }
-
 .screen{
-  display:none;
-  width:100vw;
-  height:100vh;
+  width:100vw;height:100vh;
+  position:absolute;
+  top:0;left:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
   background-size:cover;
   background-position:center;
-  text-align:center;
-  color:#3b0a57;
-  padding:20px;
+  transition:opacity 0.8s ease, transform 0.8s ease;
 }
+.hidden{opacity:0;pointer-events:none;transform:scale(1.05)}
 
-.show{display:flex;flex-direction:column;justify-content:center;align-items:center}
-
-h1,h2{font-size:2.4rem}
-p{font-size:1.4rem;max-width:700px}
+h1{font-size:2.4rem;margin-bottom:10px}
+p{font-size:1.2rem;margin-bottom:20px}
 
 button{
-  margin:12px;
-  padding:14px 26px;
-  font-size:1.3rem;
+  padding:12px 26px;
+  margin:8px;
   border:none;
-  border-radius:14px;
-  background:#6a0dad;
+  border-radius:30px;
+  background:#5a1b88;
   color:white;
+  font-size:1rem;
   cursor:pointer;
 }
 
-.option-btn{display:block;width:90%;max-width:360px}
-
-.floating{
+.sticker{
   position:absolute;
-  animation:float 6s ease-in-out infinite;
+  width:140px;
+  animation:float 4s ease-in-out infinite;
 }
+.big{width:220px}
+
 @keyframes float{
-  0%{transform:translateY(0)}
+  0%,100%{transform:translateY(0)}
   50%{transform:translateY(-18px)}
-  100%{transform:translateY(0)}
-}
-
-.msg{
-  position:absolute;
-  background:rgba(255,255,255,0.75);
-  padding:10px 16px;
-  border-radius:16px;
-  font-size:1.2rem;
-  animation:float 7s infinite;
 }
 
 .confetti{
-  position:fixed;
-  inset:0;
-  background:url("https://media.tenor.com/9j2ZTrqLx5cAAAAi/confetti.gif") center/cover;
-  z-index:999;
-  pointer-events:none;
+  position:absolute;
+  font-size:2rem;
+  animation:pop 1s ease forwards;
+}
+@keyframes pop{
+  0%{opacity:0;transform:scale(0)}
+  100%{opacity:1;transform:scale(1)}
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOADER -->
-<div id="loader" class="screen show" style="background-image:url('images/loader-bg.jpg')">
-  <h1>Something special is loading… 💗</h1>
+<!-- 1️⃣ LOADER -->
+<div class="screen" id="loader" style="background-image:url('images/loader-bg.jpg')">
+  <img src="images/loader-sticker.jpg" class="sticker big">
+  <h1>Loading Love… 💜</h1>
 </div>
 
-<!-- INTRO -->
-<div id="intro" class="screen" style="background-image:url('images/intro-bg.jpg')">
-  <img src="images/intro-sticker-top-left.jpg" class="floating" style="top:20px;left:20px;width:70px">
-  <img src="images/intro-sticker-top-right.jpg" class="floating" style="top:20px;right:20px;width:70px">
-
-  <p>
-    Hi my loveeee 💕<br>
-    Happiest Valentinessss 💖<br>
-    Before your gift… let’s start with a lil quizzzz 😌
-  </p>
-  <button onclick="go('quiz')">Let’s begin 💘</button>
+<!-- 2️⃣ INTRO -->
+<div class="screen hidden" id="intro" style="background-image:url('images/intro-bg.jpg')">
+  <img src="images/intro-sticker-top-left.jpg" class="sticker" style="top:20px;left:20px">
+  <img src="images/intro-sticker-top-right.jpg" class="sticker" style="top:20px;right:20px">
+  <img src="images/intro-sticker-bottom-left.png" class="sticker" style="bottom:20px;left:20px">
+  <img src="images/intro-sticker-bottom-right.jpg" class="sticker" style="bottom:20px;right:20px">
+  <h1>Hi my love 💕</h1>
+  <p>Ready for a little us-quiz?</p>
+  <button onclick="next('intro','q1')">Start 💌</button>
 </div>
 
-<!-- QUIZ -->
-<div id="quiz" class="screen" style="background-image:url('images/question-bg.jpg')">
-  <img src="images/q-sticker-top-left.jpg" class="floating" style="top:20px;left:20px;width:60px">
-  <img src="images/q-sticker-top-right.jpg" class="floating" style="top:20px;right:20px;width:60px">
-  <img src="images/q-sticker-bottom-left.jpg" class="floating" style="bottom:20px;left:20px;width:60px">
-  <img src="images/q-sticker-bottom-right.jpg" class="floating" style="bottom:20px;right:20px;width:60px">
-
-  <h2 id="qText"></h2>
-  <div id="options"></div>
-  <p id="reaction"></p>
-  <button id="nextBtn" style="display:none" onclick="nextQ()">Next 💗</button>
+<!-- 3️⃣ QUESTIONS -->
+<div class="screen hidden" id="q1" style="background-image:url('images/question-bg.jpg')">
+  <img src="images/q-gif-top-left.gif" class="sticker" style="top:20px;left:20px">
+  <img src="images/q-sticker-top-right.jpg" class="sticker" style="top:20px;right:20px">
+  <h1>Where did we first interact?</h1>
+  <button onclick="right('q1','Instagram 💖','q2')">Instagram</button>
+  <button onclick="wrong()">Whatsapp</button>
+  <button onclick="wrong()">Telegram</button>
+  <button onclick="wrong()">Snapchat</button>
 </div>
 
-<!-- GIFT CHOICE -->
-<div id="gift" class="screen" style="background-image:url('images/gift-bg.jpg')">
-  <h2>Choose Your Valentine Gift 💘</h2>
+<div class="screen hidden" id="q2" style="background-image:url('images/question-bg.jpg')">
+  <h1>The date you confessed?</h1>
+  <button onclick="wrong()">19 Aug</button>
+  <button onclick="wrong()">21 Aug</button>
+  <button onclick="right('q2','I am killing you after this 🔪','q3')">22 Aug</button>
+  <button onclick="wrong()">23 Aug</button>
+</div>
+
+<div class="screen hidden" id="q3" style="background-image:url('images/question-bg.jpg')">
+  <h1>Gift that touched your heart?</h1>
+  <button onclick="right('q3','You felt it too 🥺','q4')">Muffler</button>
+  <button onclick="wrong()">Handmade cards</button>
+  <button onclick="right('q3','That hug lives forever 🤍','q4')">Imaginary Hug Painting</button>
+  <button onclick="wrong()">Bracelet</button>
+</div>
+
+<div class="screen hidden" id="q4" style="background-image:url('images/question-bg.jpg')">
+  <h1>First place I want us to go?</h1>
+  <button onclick="right('q4','Manifesting Banaras 🛕','q5')">Banaras</button>
+  <button onclick="wrong()">Kashmir</button>
+  <button onclick="wrong()">Lucknow</button>
+  <button onclick="wrong()">Uttarakhand</button>
+</div>
+
+<div class="screen hidden" id="q5" style="background-image:url('images/question-bg.jpg')">
+  <h1>Place YOU want to take me?</h1>
+  <button onclick="wrong()">Manali</button>
+  <button onclick="wrong()">Shimla</button>
+  <button onclick="right('q5','Snow + us ❄️','q6')">Kashmir</button>
+  <button onclick="wrong()">Darjeeling</button>
+</div>
+
+<div class="screen hidden" id="q6" style="background-image:url('images/question-bg.jpg')">
+  <h1>How many kids do we want?</h1>
+  <button onclick="wrong()">1</button>
+  <button onclick="wrong()">2</button>
+  <button onclick="right('q6','Perfect number 💜','q7')">3</button>
+  <button onclick="alert('If YOU’ll deliver them, then I’m fine with even 20.')">11</button>
+</div>
+
+<div class="screen hidden" id="q7" style="background-image:url('images/question-bg.jpg')">
+  <img src="images/7thq-sticker-top-right.jpg" class="sticker" style="top:20px;right:20px">
+  <h1>Will you be my forever Valentine?</h1>
+  <button onclick="alert('Error detected. You are already registered as my forever Valentine. Please choose the correct answer.')">No</button>
+  <button onclick="confetti()">YES 💍</button>
+</div>
+
+<!-- 4️⃣ GIFT -->
+<div class="screen hidden" id="gift" style="background-image:url('images/gift-bg.jpg')">
+  <h1>Choose Your Valentine Gift 💘</h1>
   <p>(Choose wisely… my loveee)</p>
-  <button onclick="openGift('bouquet')">Gift 1 🎁</button>
-  <button onclick="openGift('teddy')">Gift 2 🎁</button>
+  <button onclick="next('gift','bouquet')">Gift 1 🎁</button>
+  <button onclick="next('gift','teddy')">Gift 2 🎁</button>
 </div>
 
-<!-- BOUQUET -->
-<div id="bouquet" class="screen" style="background-image:url('images/bouquet-teddy-bg.jpg')">
-  <img src="images/bouquet.png" style="width:220px">
-  <div class="msg" style="top:15%;left:10%">You are the bestest part of my life.</div>
-  <div class="msg" style="top:25%;right:10%">I will always love you no matter what.</div>
-  <div class="msg" style="bottom:25%;left:10%">You are all the 11:11, eyelashes, birthday candle wishes I ever made.</div>
-  <div class="msg" style="bottom:15%;right:10%">You mean the universe to me.</div>
-  <button onclick="go('letter')">Next 💌</button>
+<!-- 5️⃣ BOUQUET -->
+<div class="screen hidden" id="bouquet" style="background-image:url('images/bouquet-teddy-bg.jpg')">
+  <img src="images/bouquet-sticker.jpg" class="sticker big">
+  <p>You are the best part of my life 💐</p>
+  <button onclick="next('bouquet','letter')">Next 💌</button>
 </div>
 
-<!-- TEDDY -->
-<div id="teddy" class="screen" style="background-image:url('images/bouquet-teddy-bg.jpg')">
-  <img src="images/teddy.png" style="width:220px">
-  <div class="msg" style="top:18%;left:12%">Hey my forever valentineeeee…</div>
-  <div class="msg" style="top:30%;right:12%">I can’t imagine my life without you in it.</div>
-  <div class="msg" style="bottom:28%;left:12%">You hold my heart and every beat of it.</div>
-  <div class="msg" style="bottom:15%;right:12%">You’ll always be the bestest choice I have ever made.</div>
-  <button onclick="go('letter')">Next 💌</button>
+<!-- 6️⃣ TEDDY -->
+<div class="screen hidden" id="teddy" style="background-image:url('images/bouquet-teddy-bg.jpg')">
+  <img src="images/teddy-sticker.jpg" class="sticker big">
+  <p>You are my safe place 🧸</p>
+  <button onclick="next('teddy','letter')">Next 💌</button>
 </div>
 
-<!-- LETTER -->
-<div id="letter" class="screen" style="background-image:url('images/letter-bg.jpg')">
-<p>
-To the love of my lifeeee…<br><br>
-I love you wholeheartedly and I can’t wait to spend the rest of my life beside you and loving youuuu…<br>
-You make my life so meaningful just by existing, and I am damn lucky to have you as my better half.<br><br>
-I know I tell you this every now and then, but you really mean everything to me, and you are the most amazing person I have ever come across
-(bss kabhi kabhi gussa dila dete ho, woh baat alag hai 😌)<br><br>
-You know, I know, we know that we are each other’s forever Valentine.<br>
-I just hope we’ll always surprise each other on this day just like now.<br><br>
-So, to make this day even more special for my special one…<br>
-there is one more surprise waiting for you ahead 💗<br><br>
-<b>I LOVEEEEEEE YOUUUUUUU A LOTTTTTT BEBUUUU ❤️</b>
-</p>
-<button onclick="go('qr')">Next 🎀</button>
+<!-- 7️⃣ LETTER -->
+<div class="screen hidden" id="letter" style="background-image:url('images/letter-bg.jpg')">
+  <p style="max-width:80%">
+    To the love of my life,<br><br>
+    You make my life so meaningful and I am so lucky to have you as my Valentine.
+    I love you wholeheartedly and I can’t wait to continue loving you for the rest of my life.
+    You are literally the most beautiful soul I know.<br><br>
+    Always. Forever. 💜
+  </p>
+  <button onclick="next('letter','qr')">One last thing 📷</button>
 </div>
 
-<!-- QR -->
-<div id="qr" class="screen" style="background-image:url('images/qr-bg.jpg')">
-  <img src="images/love-qr-code.png" style="width:220px">
-  <p>Scan this for your final surprise…</p>
+<!-- 8️⃣ QR -->
+<div class="screen hidden" id="qr" style="background-image:url('images/qr-bg.jpg')">
+  <img src="images/love-qr-code.png" class="big">
 </div>
 
 <script>
-const screens=document.querySelectorAll('.screen');
-function go(id){
-  screens.forEach(s=>s.classList.remove('show'));
-  document.getElementById(id).classList.add('show');
+function next(from,to){
+  document.getElementById(from).classList.add('hidden');
+  document.getElementById(to).classList.remove('hidden');
 }
-setTimeout(()=>go('intro'),2200);
-
-// QUIZ DATA
-const quiz=[
-{q:"Where did we first interact with each other?",o:["WhatsApp","Instagram","Telegram","Snapchat"],c:["Instagram"],w:"👉 Umm… excuse me?? Try again 😤",r:"👉 Yesss 🥹 that’s where our story started 💗"},
-{q:"The date you confessed your feelings?",o:["19 August 2024","21 August 2024","22 August 2024","23 August 2024"],c:["22 August 2024"],w:"👉 I am killing you after this 😡",r:"👉 Okay fine… you remembered 😌💞"},
-{q:"One gift I gave you that touched your heart the most?",o:["Muffler","Handmade cards","The imaginary hugging painting","Bracelet"],c:["Muffler","The imaginary hugging painting"],w:"👉 HOW could you forget that?? 😠",r:"👉 That one came straight from my heart 🥹💖"},
-{q:"One place where I want us to go first?",o:["Banaras","Kashmir","Lucknow","Uttarakhand"],c:["Banaras"],w:"👉 Nope. Think again 😤",r:"👉 Yes! With you, anywhere feels holy 💫"},
-{q:"One place where YOU want to take me first?",o:["Manali","Shimla","Kashmir","Darjeeling"],c:["Kashmir"],w:"👉 Hmm… I don’t think so 😠",r:"👉 Okay okay… noted 😌💗 one day, maybe."},
-{q:"How many kids do we want?",o:["1","2","3","11"],c:["3"],w:"",r:"👉 Okay okay… compromise accepted 😌💗",s:{"11":"👉 If YOU’LL deliver them, then I’m fine with even 20. 😡😤"}},
-{q:"Will you be my forever Valentine?",o:["Yes ❤️","No 😏"],c:["Yes ❤️"],w:"Error detected.<br>You are already registered as my forever Valentine.<br>👉 Please choose the correct answer.",r:""}
-];
-
-let i=0;
-function loadQ(){
-  const q=quiz[i];
-  qText.innerHTML=q.q;
-  options.innerHTML="";
-  reaction.innerHTML="";
-  nextBtn.style.display="none";
-  q.o.forEach(x=>{
-    let b=document.createElement("button");
-    b.className="option-btn";
-    b.innerText=x;
-    b.onclick=()=>check(x);
-    options.appendChild(b);
-  });
+function right(id,msg,nextId){
+  alert(msg);
+  next(id,nextId);
 }
-function check(a){
-  const q=quiz[i];
-  if(q.s&&q.s[a]){reaction.innerHTML=q.s[a];nextBtn.style.display="block";return;}
-  if(q.c.includes(a)){reaction.innerHTML=q.r;nextBtn.style.display="block";}
-  else reaction.innerHTML=q.w;
+function wrong(){alert("Nope 😝 try again")}
+function confetti(){
+  for(let i=0;i<15;i++){
+    let c=document.createElement('div');
+    c.className='confetti';
+    c.innerText='✨🌸💖';
+    c.style.left=Math.random()*100+'vw';
+    c.style.top=Math.random()*100+'vh';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),1000);
+  }
+  next('q7','gift');
 }
-function nextQ(){
-  i++;
-  if(i<quiz.length)loadQ();
-  else go('gift');
-}
-loadQ();
-
-function openGift(id){
-  let c=document.createElement("div");
-  c.className="confetti";
-  document.body.appendChild(c);
-  setTimeout(()=>c.remove(),2000);
-  go(id);
-}
+setTimeout(()=>next('loader','intro'),2000);
 </script>
 
 </body>
